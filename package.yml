@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars_files:
+          - "{{ ansible_facts['distribution'] }}.yml"
+
+  tasks:
+          - name: Installing webserver software
+            package:
+                    name: "{{ package }}"
+                    state: present
+
+          - name: starting the webserver service
+            service:
+                    name: "{{ package }}"
+                    state: started
